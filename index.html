@@ -21,20 +21,136 @@
 
 class: center, middle
 
-# My Awesome Presentation
+# Hierarhical Temporal Memory on the Automata Processor
 
 ---
 
-# Agenda
+# Overview
 
-1. Introduction
-2. Deep-dive
-3. ...
+- **Introduction**
 
-[NOTE]: This file is portable; you don't need any other file, or an internet connection for this presentation.
+- Deep-dive
+
+- AP Model
+
+- Scaling
+
+- Conclusion
+
 ---
 
 # Introduction
+Background
+
+- Hierarchical Temporal Memory (HTM) is a model for machine learning
+
+- Mimics the neocortex in the brain
+
+- NuPIC being developed by Numenta
+
+---
+
+# Introduction
+Motivation
+
+- Many parallels between HTM and the AP
+
+- Hardware based implementation -> speedup
+
+---
+
+# Overview
+
+- Introduction
+
+- **Deep-dive**
+
+- AP Model
+
+- Scaling
+
+- Conclusion
+
+---
+
+# Deep-dive
+Execution model:
+
+// GRAPHIC
+- data -> [encoding] -> SDR
+- **SDR -> [spatial pooler] -> [temporal memory] -> SDR**
+- SDR -> [decoding] -> data
+
+---
+
+# Deep-dive
+
+**Sparse distributed representation (SDR)**: encoding of data input in a binary vector, ~2% of bits are active
+
+- In neocortex: only a small percentage of neurons active at any give time
+
+- Sparsity enforces accuracy of recognized patterns; decreases likelihood of false positives<sup>[1]</sup>
+
+---
+
+# Deep-dive
+HTM Structure
+
+// GRAPHIC
+
+---
+# Deep-dive
+**Spatial pooler**: recognizes spatial patterns in data
+- SDR bit indices have various connections to columns of cells via "proximal" synapses
+
+- Above threshold number of these synapses firing -> activate column
+
+---
+# Deep-dive
+**Spatial pooler**: recognizes spatial patterns in data
+- SDR bit indices have various connections to columns of cells via "proximal" synapses
+
+- Above threshold number of these synapses firing -> activate column
+
+**Temporal Memory**: recognizes temporal patterns in data
+- Cells are connected to the cells they predict will fire on next time step via "distal" synapses
+
+- Above threshold number of these synapses firing -> activate cell 
+
+---
+
+# Overview
+
+- Introduction
+
+- Deep-dive
+
+- **AP Model**
+
+- Scaling
+
+- Conclusion
+
+---
+# AP Model
+// Discussion of parallels
+
+---
+# AP Model
+- The model consists of ANML macros linked together in several layers and encapsulated in a top level "htm region" file
+
+- HTM Region
+  - HTM Column
+    - Spatial Pooler Segment
+    - Temporal Memory Column
+      - Temporal Memory Cell
+        - Temporal Memory Segment
+---
+# AP Model
+The model is generated from templates using Python and Jinja2
+
+
+# 
 
     </textarea>
     <script type="text/javascript">
